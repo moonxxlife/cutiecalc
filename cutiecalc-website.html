@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#fff4fa">
+<meta name="description" content="CutieCalc is a cute, easy-to-use free online calculator with basic and scientific modes.">
+<title>CutieCalc — A Little Math, A Lot of Magic</title>
+<style>
+:root{--ink:#493b50;--muted:#987d91;--pink:#c477a5;--pinklight:#f9e5f1;--lav:#eee8fa;--line:#f0dce9;--paper:#fff7fb}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;padding:28px 16px 40px;background:radial-gradient(circle at 12% 12%,#ffe8f3 0,transparent 28%),radial-gradient(circle at 90% 80%,#eee8ff 0,transparent 30%),#fffafd;color:var(--ink);font-family:ui-rounded,"Trebuchet MS",system-ui,sans-serif;display:flex;justify-content:center;align-items:flex-start}
+main{width:min(100%,440px)}.top{display:flex;align-items:center;justify-content:space-between;margin:0 4px 16px}.brand{font-size:25px;font-weight:850;letter-spacing:-.8px}.tag{font-size:12px;color:var(--muted);margin-top:3px}.bear{font-size:32px}.card{background:rgba(255,247,251,.96);border:1px solid #f1d9e8;border-radius:28px;padding:18px;box-shadow:0 16px 45px #9e66851a}.tabs{display:flex;gap:8px;margin-bottom:14px}.tab{border:1px solid var(--line);background:white;color:var(--muted);padding:10px 15px;border-radius:30px;font-weight:750;cursor:pointer}.tab.active{background:var(--pink);border-color:var(--pink);color:white}.display{background:white;border:1px solid var(--line);border-radius:20px;padding:15px;min-height:116px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}.previous{text-align:right;min-height:20px;color:#a58b9e;font-size:14px;overflow-wrap:anywhere}.screen{text-align:right;font-size:clamp(28px,8vw,38px);font-weight:800;overflow-wrap:anywhere;line-height:1.2}.message{text-align:right;color:#bd6393;font-size:12px;margin-top:6px;min-height:16px}.tools{display:flex;align-items:center;justify-content:space-between;margin:12px 1px 9px;color:var(--muted);font-size:12px}.angle{background:var(--lav);border:0;border-radius:20px;padding:8px 13px;color:#67518c;font-weight:750;cursor:pointer}.sci{display:none;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-bottom:9px}.sci.show{display:grid}.keys{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}button.key{min-width:0;min-height:53px;border-radius:15px;border:1px solid var(--line);background:white;color:var(--ink);font-size:18px;font-weight:750;cursor:pointer;transition:transform .1s,background .1s}button.key:active{transform:scale(.96);background:#f9e3f0}button.key.op{background:var(--pinklight);color:#994d7c}button.key.special{background:var(--lav);color:#67518c;font-size:14px;min-height:43px}button.key.equal{background:var(--pink);color:white;border-color:var(--pink)}button:focus-visible{outline:3px solid #a85b8c;outline-offset:2px}.bottom{display:flex;justify-content:space-between;align-items:center;margin-top:15px}.bottom span{font-size:12px;color:var(--muted)}.history-toggle{border:0;background:var(--pinklight);color:#994d7c;border-radius:20px;padding:9px 13px;font-weight:750;cursor:pointer}.history{margin-top:12px}.history[hidden]{display:none}.history-head{display:flex;justify-content:space-between;font-size:13px;font-weight:800;margin-bottom:8px}.history-head button{border:0;background:none;color:#a05282;cursor:pointer}.history-item{display:block;width:100%;text-align:left;background:white;border:1px solid var(--line);border-radius:12px;padding:10px;margin-top:6px;color:var(--ink);cursor:pointer}.foot{text-align:center;color:#a58b9e;font-size:12px;margin-top:14px}.heart{color:#c477a5}
+@media(max-width:360px){.card{padding:13px}.keys{gap:6px}button.key{min-height:48px}.sci{gap:5px}}
+</style>
+</head>
+<body>
+<main>
+  <header class="top"><div><div class="brand">🌷 CutieCalc</div><div class="tag">A little math, a lot of magic ♡</div></div><div class="bear" aria-hidden="true">🧸</div></header>
+  <section class="card" aria-label="Calculator">
+    <div class="tabs"><button class="tab active" id="basicTab" type="button">♡ Basic</button><button class="tab" id="sciTab" type="button">✧ Scientific</button></div>
+    <div class="display"><div class="previous" id="previous" aria-live="polite"></div><div class="screen" id="screen" aria-live="polite">0</div><div class="message" id="message" aria-live="polite">Ready when you are ♡</div></div>
+    <div class="tools"><span>✨ Your calculation space</span><button class="angle" id="angle" type="button">DEG °</button></div>
+    <div class="sci" id="scientific">
+      <button class="key special" data-insert="sin(">sin</button><button class="key special" data-insert="cos(">cos</button><button class="key special" data-insert="tan(">tan</button><button class="key special" data-insert="sqrt(">√</button>
+      <button class="key special" data-insert="log(">log</button><button class="key special" data-insert="ln(">ln</button><button class="key special" data-insert="^">xʸ</button><button class="key special" data-insert="!">x!</button>
+      <button class="key special" data-insert="pi">π</button><button class="key special" data-insert="e">e</button><button class="key special" data-insert="abs(">abs</button><button class="key special" data-insert="(">(</button>
+      <button class="key special" data-insert=")">)</button><button class="key special" data-insert="%">%</button><button class="key special" data-insert="Ans">Ans</button><button class="key special" data-insert="floor(">floor</button>
+    </div>
+    <div class="keys">
+      <button class="key op" data-action="clear">AC</button><button class="key op" data-action="delete">⌫</button><button class="key op" data-insert="%">%</button><button class="key op" data-insert="/">÷</button>
+      <button class="key" data-insert="7">7</button><button class="key" data-insert="8">8</button><button class="key" data-insert="9">9</button><button class="key op" data-insert="*">×</button>
+      <button class="key" data-insert="4">4</button><button class="key" data-insert="5">5</button><button class="key" data-insert="6">6</button><button class="key op" data-insert="-">−</button>
+      <button class="key" data-insert="1">1</button><button class="key" data-insert="2">2</button><button class="key" data-insert="3">3</button><button class="key op" data-insert="+">+</button>
+      <button class="key" data-insert="0">0</button><button class="key" data-insert=".">.</button><button class="key" data-action="sign">±</button><button class="key equal" data-action="equals">=</button>
+    </div>
+    <div class="bottom"><span>♡ Made for curious minds</span><button class="history-toggle" id="historyToggle" type="button">◷ History</button></div>
+    <div class="history" id="history" hidden><div class="history-head"><span>Recent calculations</span><button id="clearHistory" type="button">Clear</button></div><div id="historyList"><span class="tag">Your calculations will appear here.</span></div></div>
+  </section>
+  <div class="foot">Made with <span class="heart">♥</span> for curious minds · Works on mobile and desktop</div>
+</main>
+<script>
+(()=>{
+const $=id=>document.getElementById(id);let expr='',ans=0,deg=true,justDone=false,history=[];
+function render(){ $('screen').textContent=expr||'0';$('previous').textContent='';$('message').textContent='Ready when you are ♡';$('message').style.color='#bd6393';}
+function insert(s){if(justDone&&!/[+*/^%!)]/.test(s)&&s!=='%')expr='';justDone=false;if(expr.length<120)expr+=s;render();}
+function factorial(n){if(!Number.isInteger(n)||n<0||n>170)throw Error('Factorial needs a whole number from 0 to 170');let r=1;for(let j=2;j<=n;j++)r*=j;return r;}
+function calculate(src){
+ const t=src.replace(/\s/g,'');let i=0;const peek=()=>t[i]||'',eat=c=>peek()===c?(i++,true):false;
+ function number(){let st=i;while(/[0-9.]/.test(peek())&&peek())i++;let raw=t.slice(st,i);if(!/[0-9]/.test(raw))throw Error('Check your number');let n=Number(raw);if(!Number.isFinite(n))throw Error('Invalid number');return n;}
+ function primary(){
+  if(eat('+'))return unary();if(eat('-'))return -unary();
+  if(eat('(')){let v=add();if(!eat(')'))throw Error('Missing closing parenthesis');return postfix(v);}
+  if(/[0-9.]/.test(peek()))return postfix(number());
+  if(/[a-zA-Zπ]/.test(peek())){let st=i;while(/[a-zA-Z]/.test(peek())&&peek())i++;let name=t.slice(st,i);if(name==='π')name='pi';if(name==='pi')return Math.PI;if(name==='e')return Math.E;if(name==='Ans')return ans;
+   const funcs={sin:x=>Math.sin(deg?x*Math.PI/180:x),cos:x=>Math.cos(deg?x*Math.PI/180:x),tan:x=>{let a=deg?x*Math.PI/180:x;if(Math.abs(Math.cos(a))<1e-12)throw Error('Tangent is undefined here');return Math.tan(a)},sqrt:x=>{if(x<0)throw Error('Square root needs a non-negative number');return Math.sqrt(x)},log:x=>{if(x<=0)throw Error('Log needs a positive number');return Math.log10(x)},ln:x=>{if(x<=0)throw Error('Ln needs a positive number');return Math.log(x)},abs:Math.abs,floor:Math.floor};
+   if(!(name in funcs))throw Error('Unknown function: '+name);if(!eat('('))throw Error('Add ( after '+name);let v=add();if(!eat(')'))throw Error('Missing closing parenthesis');return postfix(funcs[name](v));
+  }throw Error('Check your expression');
+ }
+ function postfix(v){while(true){if(eat('!'))v=factorial(v);else if(eat('%'))v/=100;else break;}return v;}
+ function power(){let v=primary();if(eat('^'))v=Math.pow(v,unary());return v;}
+ function unary(){return power();}
+ function mul(){let v=unary();while(true){if(eat('*'))v*=unary();else if(eat('/')){let d=unary();if(d===0)throw Error('Cannot divide by zero');v/=d;}else break;}return v;}
+ function add(){let v=mul();while(true){if(eat('+'))v+=mul();else if(eat('-'))v-=mul();else break;}return v;}
+ let result=add();if(i<t.length)throw Error('Check the expression near '+t.slice(i));if(!Number.isFinite(result))throw Error('Result is too large');return result;
+}
+function equals(){if(!expr)return;try{let old=expr,res=calculate(expr),formatted=Number(res.toPrecision(12)).toString();ans=res;$('previous').textContent=old+' =';$('screen').textContent=formatted;$('message').textContent='Perfect calculation! ♡';expr=formatted;justDone=true;history.unshift({old,formatted});history=history.slice(0,8);drawHistory();}catch(e){$('message').textContent=e.message||'Invalid calculation';$('message').style.color='#c14f66';}}
+function drawHistory(){const list=$('historyList');list.replaceChildren();if(!history.length){list.textContent='No calculations yet.';return;}history.forEach(item=>{let b=document.createElement('button');b.type='button';b.className='history-item';b.textContent=item.old+' = '+item.formatted;b.addEventListener('click',()=>{expr=item.formatted;justDone=true;render();});list.append(b);});}
+document.querySelectorAll('[data-insert]').forEach(b=>b.addEventListener('click',()=>insert(b.dataset.insert)));
+document.querySelectorAll('[data-action]').forEach(b=>b.addEventListener('click',()=>{switch(b.dataset.action){case'clear':expr='';justDone=false;render();break;case'delete':expr=expr.slice(0,-1);justDone=false;render();break;case'equals':equals();break;case'sign':if(expr)insert('*(-1)');else insert('-');}}));
+$('basicTab').addEventListener('click',()=>{$('scientific').classList.remove('show');$('basicTab').classList.add('active');$('sciTab').classList.remove('active');});
+$('sciTab').addEventListener('click',()=>{$('scientific').classList.add('show');$('sciTab').classList.add('active');$('basicTab').classList.remove('active');});
+$('angle').addEventListener('click',()=>{deg=!deg;$('angle').textContent=deg?'DEG °':'RAD';});
+$('historyToggle').addEventListener('click',()=>{$('history').hidden=!$('history').hidden;});
+$('clearHistory').addEventListener('click',()=>{history=[];drawHistory();});
+document.addEventListener('keydown',e=>{if(e.ctrlKey||e.metaKey||e.altKey)return;if(/^[0-9.+\-*/^()%!]$/.test(e.key)){e.preventDefault();insert(e.key);}else if(e.key==='Enter'||e.key==='='){e.preventDefault();equals();}else if(e.key==='Backspace'){e.preventDefault();expr=expr.slice(0,-1);render();}else if(e.key==='Escape'){expr='';render();}});
+})();
+</script>
+</body>
+</html>
